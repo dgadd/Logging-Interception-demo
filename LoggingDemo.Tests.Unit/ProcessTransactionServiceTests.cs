@@ -28,16 +28,18 @@ namespace LoggingDemo.Tests.Unit
         }
 
         [Test]
-        public void GetPaymentApprovalAndGenerateTransactionsMethod_AccountPassedToConstructor_GeneratesApprovalAndTransaction()
+        public void GetPaymentApprovalAndGenerateTransactionMethod_AccountPassedToConstructor_GeneratesApprovalAndTransaction()
         {
             // declare constants
             const decimal totalAmount = 35.27M;
+            const int accountId = 12354;
             var shoppingCart = new ShoppingCart
                                    {
                                        Id = 12531515,
                                        Total = totalAmount,
                                        Account = new Account
                                                      {
+                                                         Id = accountId,
                                                          CreditCardInfo = new CreditCardInfo()
                                                      }
                                    };
@@ -53,18 +55,19 @@ namespace LoggingDemo.Tests.Unit
                                   };
 
             // set expectations
-            Expect.Call(_accountRepository.GetShoppingCart()).Return(shoppingCart);
+            Expect.Call(_accountRepository.GetCurrentShoppingCart(accountId)).Return(shoppingCart);
             Expect.Call(_paymentGateway.ApprovePayment(shoppingCart)).Return(paymentGatewayResultDto);
             _transactionsRepository.Save(transaction);
 
             _mockRepository.ReplayAll();
 
             var sut = new ProcessTransactionService(_accountRepository, _transactionsRepository, _paymentGateway);
-            sut.GetPaymentApprovalAndGenerateTransactions();
+            sut.GetPaymentApprovalAndGenerateTransaction(accountId);
 
             _mockRepository.VerifyAll();
 
             Assert.AreEqual(shoppingCart.Total, paymentGatewayResultDto.ApprovedTotal);
+            Assert.AreEqual(paymentGatewayResultDto.ApprovedTotal, transaction.GrossAmount);
         }
 
     }

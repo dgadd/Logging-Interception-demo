@@ -4,6 +4,6 @@ namespace LoggingDemo.Repository
 {
     public interface IAccountRepository
     {
-        ShoppingCart GetShoppingCart();
+        ShoppingCart GetCurrentShoppingCart(int accountId);
     }
 }

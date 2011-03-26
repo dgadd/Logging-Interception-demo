@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{EEC44E37-32B7-48E9-A598-6007DFEF314C}</ProjectGuid>
+    <ProjectGuid>{F14C2F54-4BDA-4533-BFF1-544696D2AD32}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LoggingDemo.ServiceLayer</RootNamespace>
-    <AssemblyName>LoggingDemo.ServiceLayer</AssemblyName>
+    <RootNamespace>LoggingDemo.Tests.Integration</RootNamespace>
+    <AssemblyName>LoggingDemo.Tests.Integration</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,14 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\3rdParty\CastleWindsor2.5.3\dotNet35\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor">
-      <HintPath>..\3rdParty\CastleWindsor2.5.3\dotNet35\Castle.Windsor.dll</HintPath>
+    <Reference Include="nunit.framework">
+      <HintPath>..\3rdParty\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,7 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProcessTransactionService.cs" />
+    <Compile Include="FakeAccountRepository.cs" />
+    <Compile Include="FakePaymentGateway.cs" />
+    <Compile Include="FakeTransactionsRepository.cs" />
+    <Compile Include="ProcessTransactionServiceIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +58,13 @@
       <Project>{D09A83EF-8424-460F-8A43-7177DAD74D1A}</Project>
       <Name>LoggingDemo.Repository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LoggingDemo.ServiceLayer\LoggingDemo.ServiceLayer.csproj">
+      <Project>{EEC44E37-32B7-48E9-A598-6007DFEF314C}</Project>
+      <Name>LoggingDemo.ServiceLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

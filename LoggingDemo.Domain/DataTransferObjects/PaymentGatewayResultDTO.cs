@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace LoggingDemo.Domain.DataTransferObjects
+﻿namespace LoggingDemo.Domain.DataTransferObjects
 {
-    public class PaymentGatewayResultDTO
+    public class PaymentGatewayResultDTO : DataTransferObjectBase
     {
         public decimal ApprovedTotal { get; set; }
     }

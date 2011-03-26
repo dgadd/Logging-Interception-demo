@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D445E26C-4C81-42C4-B99B-849126035F83}</ProjectGuid>
+    <ProjectGuid>{04E17566-1159-4704-95C1-93D2865D8D3D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LoggingDemo.Domain</RootNamespace>
-    <AssemblyName>LoggingDemo.Domain</AssemblyName>
+    <RootNamespace>LoggingDemo.Utils</RootNamespace>
+    <AssemblyName>LoggingDemo.Utils</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\3rdParty\CastleWindsor2.5.3\dotNet35\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\3rdParty\CastleWindsor2.5.3\dotNet35\loggingFacility\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,14 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
-    <Compile Include="CreditCardInfo.cs" />
-    <Compile Include="DataTransferObjects\PaymentGatewayResultDTO.cs" />
-    <Compile Include="DataTransferObjects\DataTransferObjectBase.cs" />
-    <Compile Include="PrimaryKeyBase.cs" />
+    <Compile Include="LoggingInterceptor.cs" />
+    <Compile Include="MethodReturnDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShoppingCart.cs" />
-    <Compile Include="Transaction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
     <Reference Include="nunit.framework">
       <HintPath>..\3rdParty\nunit.framework.dll</HintPath>
     </Reference>
@@ -46,6 +47,7 @@
     <Compile Include="FakeAccountRepository.cs" />
     <Compile Include="FakePaymentGateway.cs" />
     <Compile Include="FakeTransactionsRepository.cs" />
+    <Compile Include="LoggingInterceptorTests.cs" />
     <Compile Include="ProcessTransactionServiceIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -61,6 +63,10 @@
     <ProjectReference Include="..\LoggingDemo.ServiceLayer\LoggingDemo.ServiceLayer.csproj">
       <Project>{EEC44E37-32B7-48E9-A598-6007DFEF314C}</Project>
       <Name>LoggingDemo.ServiceLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoggingDemo.Utils\LoggingDemo.Utils.csproj">
+      <Project>{04E17566-1159-4704-95C1-93D2865D8D3D}</Project>
+      <Name>LoggingDemo.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

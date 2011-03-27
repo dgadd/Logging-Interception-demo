@@ -1,1 +1,24 @@
-Placeholder for upcoming sample code.
+For information on other topics of interest, see my blog at:
+
+http://codingsolutions.blogspot.com/
+
+David Gadd
+
+*****
+
+This sample code demonstrates how to use a combination of Castle's IOC container (using explicit component config settings) with log4net and Castle's IInterceptor interface
+to log the interactions between interfaces.
+
+KEY POINTS TO OBSERVE:
+1) In the unit tests project, the test with mocks demonstrates the proposed service method interaction, using 3 interfaces
+2) In the integration tests project, fake implementations have been provided for each interface. These are the implementations that will be logged by Castle's IInterceptor.
+3) In the app.config file for the integration test project, each interface has been mapped to the implementation through <castle> component entries.
+4) In the app.config, each component entry has a nested reference to the LoggingInterceptor class, a custom class which implements IInterceptor.
+5) The LoggingInterceptor class also contains a LogNow() method, which calls to log4net to perform the actual logging.
+6) Default log4net settings have been included in the app.config file in the integration test project; note that it is currently set to write to C:\LogFiles\ directory.
+7) The interfaces interact with domain entities from the Domain namespace. If the ToString() method of these domain entities were not overwritten, then the logging information
+for the parameters and return types of the interface methods would be fairly dull.
+8) To prevent this, the domain entities inherit from a base class, PrimaryKeyBase. This class kind of violates SRP, because it actually now does two things:
+   a) It declares an Id property. (This can be useful for domain/ORM identity/equality).
+   b) It provides a ToString() implementation which writes out all of the class properties using reflection.
+9) This second purpose of ToString() overriding results in detailed information on the domain entity property values when writing to the Log from LoggingInterceptor.
